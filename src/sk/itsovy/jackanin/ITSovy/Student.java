@@ -1,14 +1,12 @@
 package sk.itsovy.jackanin.ITSovy;
 
-import java.util.Date;
-
 public class Student {
     private String firstName;
     private String lastName;
-    private Date birthDate;
+    private int[] birthDate;
 
     //CONSTRUCTOR
-    public Student(String firstName, String lastName, Date birthDate) {
+    public Student(String firstName, String lastName, int[] birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -21,8 +19,11 @@ public class Student {
     public String getLastName() {
         return lastName;
     }
-    public Date getBirthDate() {
+    public int[] getBirthDate() {
         return birthDate;
+    }
+    public int getBirthMonth() {
+        return birthDate[1];
     }
 
     //METHOD
@@ -30,4 +31,10 @@ public class Student {
     public String toString(){
         return firstName+" "+lastName;
     }
+
+    public boolean getZodiacSign(){
+        return true;
+    }
+
+
 }

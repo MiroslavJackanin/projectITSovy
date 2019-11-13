@@ -1,5 +1,7 @@
 package sk.itsovy.jackanin.ITSovy;
 
+import java.util.Random;
+
 public class Group {
     private String name;
     private int size;
@@ -12,6 +14,11 @@ public class Group {
         this.capacity = capacity;
         this.size=0;
         this.arr=new Student[capacity];
+    }
+
+    //GETTER
+    public Student getStudent(String firstName, String LastName){
+        return null;
     }
 
     //METHOD
@@ -28,10 +35,6 @@ public class Group {
         size++;
 
         return true;
-    }
-
-    public Student getStudent(String firstName, String LastName){
-        return null;
     }
 
     public boolean deleteStudent(Student student){
@@ -55,5 +58,54 @@ public class Group {
         for (int i=0; i<size; i++){
             System.out.println("    "+arr[i].toString());
         }
+    }
+
+    public boolean sort(){
+        if (size<=1)
+            return false;
+        for (int i=0; i<size; i++){
+            for (int j=0; j<size-1;j++){
+                if (arr[j].getLastName().compareToIgnoreCase(arr[j + 1].getLastName()) > 0) {
+                    Student temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }else if (arr[j].getLastName().compareToIgnoreCase(arr[j + 1].getLastName()) == 0){
+                    if (arr[j].getFirstName().compareToIgnoreCase(arr[j + 1].getFirstName()) > 0){
+                        Student temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public Student randomStudent(){
+        Random rand=new Random();
+        int temp=rand.nextInt(size);
+        return arr[temp];
+    }
+
+    public Student[] getStudents(int month){
+        if (size == 0 || month <= 0 || month >=13){
+            System.out.println("Wrong input");
+            System.exit(1);
+        }
+        int temp=0;
+        for (int i=0; i<size; i++){
+            if (month == arr[i].getBirthMonth()){
+                temp++;
+            }
+        }
+        Student[] students = new Student[temp];
+        temp=0;
+        for (int i=0; i<size; i++){
+            if (month == arr[i].getBirthMonth()){
+                students[temp]=arr[i];
+                temp++;
+            }
+        }
+        return students;
     }
 }
