@@ -32,5 +32,11 @@ public class Main {
 
         System.out.println("---------------");
         System.out.println(Arrays.toString(group1.getStudents(11)));
+        System.out.println(Arrays.toString(student1.getBirthDate()));
+
+        System.out.println("-----------------");
+
+        student1.addSubject("MAT");
+        student1.printSubjects();
     }
 }

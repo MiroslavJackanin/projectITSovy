@@ -108,4 +108,8 @@ public class Group {
         }
         return students;
     }
-}
+
+    public Student[] getStudentBySubject(){
+        return null;
+    }
+ }
