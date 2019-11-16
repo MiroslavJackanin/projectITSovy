@@ -6,13 +6,16 @@ public class Student {
     private String firstName;
     private String lastName;
     private int[] birthDate;
-    private String[] subjects = new String[0];
+    private String[] subjects;
+    private int numberOfSubjects;
 
     //CONSTRUCTOR
     public Student(String firstName, String lastName, int[] birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        subjects = new String[10];
+        this.numberOfSubjects = 0;
     }
 
     //GETTER
@@ -48,19 +51,53 @@ public class Student {
         return true;
     }
 
-    public void addSubject(String subject){
-        String[] tempSubjects = new String[subjects.length+1];
-        tempSubjects[subjects.length] = subject;
-        subjects = tempSubjects;
+    public boolean addSubject(String subject){
+        if (subject == null || subject.equals(""))
+            return false;
+
+        boolean contains = false;
+        for (int i=0; i<numberOfSubjects; i++){
+            if (subjects[i].compareToIgnoreCase(subject) == 0){
+                contains = true;
+                break;
+            }
+        }
+
+        if (!contains && numberOfSubjects<10){
+            subjects[numberOfSubjects]=subject.toUpperCase();
+            numberOfSubjects++;
+            return true;
+        }else
+            return false;
     }
 
-    public void  printSubjects(){
-        for (int i=0; i<subjects.length; i++){
-            System.out.print(subjects[i]);
+    public void printSubjects(){
+        System.out.println("Student "+firstName+" "+lastName+" attends: ");
+        for (int i=0; i<numberOfSubjects; i++){
+            System.out.println(" - "+subjects[i]);
         }
     }
 
-    public void deleteSubject(){
+    public boolean deleteSubject(String subject){
+        if (subject == null || subject.equals(""))
+            return false;
 
+        boolean contains = false;
+        int position=0;
+        for (int i=0; i<numberOfSubjects; i++){
+            if (subjects[i].compareToIgnoreCase(subject) == 0){
+                position=i;
+                contains = true;
+                break;
+            }
+        }
+        if (contains){
+            for (int i=position; i<numberOfSubjects-1; i++){
+                subjects[i]=subjects[i+1];
+            }
+            numberOfSubjects--;
+            return true;
+        }else
+            return false;
     }
 }

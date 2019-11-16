@@ -38,5 +38,16 @@ public class Main {
 
         student1.addSubject("MAT");
         student1.printSubjects();
+        student1.addSubject("FZY");
+        student1.printSubjects();
+        student1.addSubject("PRO");
+        student1.printSubjects();
+        student1.addSubject("HIS");
+        student1.printSubjects();
+        student1.deleteSubject("HIS");
+        student1.printSubjects();
+        student1.deleteSubject("FZY");
+        student1.addSubject("FYZ");
+        student1.printSubjects();
     }
 }
